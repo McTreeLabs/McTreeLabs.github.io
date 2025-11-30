@@ -9,7 +9,11 @@
       --green: #34d399;
       --green-dark: #059669;
       --bg: #000000;
-      --text: #000000;
+      --text: #d1f7e7;
+      --card-bg: #064e3b; /* dark green cards */
+      --card-text: #e0fdf4;
+      --button-bg: #34d399;
+      --button-hover: #059669;
     }
 
     * {
@@ -31,8 +35,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: white;
-      border-bottom: 1px solid #e5e7eb;
+      background: #111; /* dark navbar */
+      border-bottom: 1px solid #059669;
       position: sticky;
       top: 0;
       z-index: 10;
@@ -41,7 +45,7 @@
     nav .logo {
       font-size: 1.6rem;
       font-weight: 700;
-      color: var(--green-dark);
+      color: var(--green);
     }
 
     nav a {
@@ -53,7 +57,7 @@
     }
 
     nav a:hover {
-      color: var(--green-dark);
+      color: var(--green);
     }
 
     /* HERO */
@@ -68,29 +72,29 @@
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 20px;
-      color: var(--green-dark);
+      color: var(--green);
     }
 
     .hero p {
       font-size: 1.3rem;
-      color: #4b5563;
+      color: #a7f3d0;
       margin-bottom: 35px;
     }
 
     .hero button {
       padding: 14px 32px;
-      background: var(--green);
+      background: var(--button-bg);
       border: none;
       border-radius: 10px;
       font-size: 1.1rem;
       font-weight: 600;
-      color: white;
+      color: black;
       cursor: pointer;
       transition: 0.2s;
     }
 
     .hero button:hover {
-      background: var(--green-dark);
+      background: var(--button-hover);
     }
 
     /* CONTENT SECTIONS */
@@ -103,23 +107,17 @@
     h2 {
       font-size: 2rem;
       margin-bottom: 25px;
-      color: var(--green-dark);
+      color: var(--green);
     }
 
     p {
       font-size: 1.1rem;
       line-height: 1.6;
-      color: #424B54;
+      color: var(--text);
     }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 40px;
-      font-size: 0.9rem;
-      color: #6b7280;
-    }
-  .grid {
+    /* GRID CARDS */
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 25px;
@@ -127,27 +125,37 @@
     }
 
     .card {
-      background: white;
+      background: var(--card-bg);
       padding: 25px;
       border-radius: 14px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--green-dark);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
       transition: 0.25s;
+      color: var(--card-text);
     }
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.7);
       border-color: var(--green);
     }
 
     h3 {
       margin-bottom: 10px;
       font-size: 1.3rem;
-      color: var(--green-dark);
+      color: var(--green);
     }
 
-    </style>
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: #111;
+      border-top: 1px solid var(--green-dark);
+    }
+  </style>
 </head>
 
 <body>
@@ -161,8 +169,9 @@
   <section class="hero">
     <h1>Fast. Lightweight. Reliable.</h1>
     <p>McTree is a performance‑focused server software built on top of Purpur—clean, stable, and optimized for the modern Minecraft ecosystem.</p>
-  <button onclick="window.open('https://github.com/McTreeLabs/McTreeDownloads/releases/', '_blank')">
-    Download
+    <button onclick="window.open('https://github.com/McTreeLabs/McTreeDownloads/releases/', '_blank')">
+      Download
+    </button>
   </section>
 
   <!-- FEATURES GRID -->
@@ -186,8 +195,12 @@
         <p>No bloat, no unnecessary patches — only what actually matters.</p>
       </div>
       <div class="card">
-        <h3>Made By Pros :)</h3>
-        <p>Just trust okay :)</p>
+        <h3>🧩 Modular</h3>
+        <p>Easily extend functionality with plugins and custom configs.</p>
+      </div>
+      <div class="card">
+        <h3>⚙️ Easy Setup</h3>
+        <p>Get your server running in minutes with minimal configuration.</p>
       </div>
     </div>
   </section>
@@ -198,9 +211,7 @@
   </section>
 
   <footer>
-    © McTree Labs — Better Than Paper! - Foundered by ItzSharkzYT - Not affiliated with MOJANG
+    © McTree Labs — Better Than Paper! - Founded by ItzSharkzYT - Not affiliated with MOJANG
   </footer>
 </body>
 </html>
-
-
