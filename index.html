@@ -1,146 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Tree Server Software</title>
-    <style>
-        /* General body & background */
-        body {
-            margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            color: #00FF00;
-            background: url('https://images.unsplash.com/photo-1617957718645-7680362d6312?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-            position: relative;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>McTree — Fast & Lightweight Server Software</title>
+  <style>
+    :root {
+      --green: #34d399;
+      --green-dark: #059669;
+      --bg: #f9fafb;
+      --text: #111827;
+    }
 
-        /* Dark overlay */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            z-index: 0;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
 
-        /* Header / nav bar */
-        header {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            gap: 40px;
-            background-color: rgba(0,0,0,0.7);
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+    }
 
-        header a {
-            color: #00FF00;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: all 0.3s;
-            text-shadow: 0 0 5px #00FF00;
-        }
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-        header a:hover {
-            text-shadow: 0 0 15px #00FF00, 0 0 25px #00FF00;
-        }
+    nav .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
 
-        /* Section styling */
-        section {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 80vh;
-            text-align: center;
-            padding: 20px;
-        }
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: 0.2s;
+    }
 
-        /* Glow animation */
-        @keyframes glowPulse {
-            0% { text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 20px #00FF00; }
-            100% { text-shadow: 0 0 15px #00FF00, 0 0 30px #00FF00, 0 0 50px #00FF00; }
-        }
+    nav a:hover {
+      color: var(--green-dark);
+    }
 
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            animation: glowPulse 2s infinite alternate;
-        }
+    /* HERO */
+    .hero {
+      padding: 120px 40px;
+      text-align: center;
+      max-width: 900px;
+      margin: auto;
+    }
 
-        p {
-            font-size: 1.2em;
-            margin-bottom: 40px;
-        }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--green-dark);
+    }
 
-        /* Neon button */
-        .neon-button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #00FF00;
-            background-color: rgba(0,0,0,0.7);
-            border: 2px solid #00FF00;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 20px #00FF00;
-        }
+    .hero p {
+      font-size: 1.3rem;
+      color: #4b5563;
+      margin-bottom: 35px;
+    }
 
-        .neon-button:hover {
-            background-color: #00FF00;
-            color: #000;
-            box-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00, 0 0 40px #00FF00;
-        }
+    .hero button {
+      padding: 14px 32px;
+      background: var(--green);
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-        /* Footer */
-        footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 10px;
-            color: #00FF00;
-            background-color: rgba(0,0,0,0.7);
-            font-size: 0.9em;
-        }
+    .hero button:hover {
+      background: var(--green-dark);
+    }
 
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
+    /* CONTENT SECTIONS */
+    .section {
+      padding: 80px 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: var(--green-dark);
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #424B54;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+  .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      border-color: var(--green);
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      color: var(--green-dark);
+    }
+
     </style>
 </head>
+
 <body>
-    <header>
-        <a href="#home">Home</a>
-        <a href="#download">Download</a>
-    </header>
+  <nav>
+    <div class="logo">McTree</div>
+    <div>
+      <a href="index.html">Home</a>
+    </div>
+  </nav>
 
-    <section id="home">
-        <h1>Tree Server Software</h1>
-        <p>A Better minecraft server software based on Purpur! Love you PurPur!</p>
-    </section>
+  <section class="hero">
+    <h1>Fast. Lightweight. Reliable.</h1>
+    <p>McTree is a performance‑focused server software built on top of Purpur—clean, stable, and optimized for the modern Minecraft ecosystem.</p>
+  <button onclick="window.open('https://github.com/McTreeLabs/McTreeLabs.github.io/releases', '_blank')">
+    Download
+  </section>
 
-    <section id="download">
-        <h1>Download</h1>
-        <p>Get the latest release from GitHub.</p>
-        <a href="https://github.com/McTreeLabs/McTreeLabs.github.io/releases" target="_blank" class="neon-button">Download</a>
-    </section>
+  <!-- FEATURES GRID -->
+  <section class="section" style="padding-top:40px;">
+    <h2>Features</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>⚡ High Performance</h3>
+        <p>Optimized engine patches for smooth gameplay with reduced lag.</p>
+      </div>
+      <div class="card">
+        <h3>🌱 Purpur-Based</h3>
+        <p>Fully compatible with Purpur plugins, configs, and API extensions.</p>
+      </div>
+      <div class="card">
+        <h3>🛡️ Stable & Secure</h3>
+        <p>Clean codebase with reliable fixes and long-term support.</p>
+      </div>
+      <div class="card">
+        <h3>📦 Lightweight</h3>
+        <p>No bloat, no unnecessary patches — only what actually matters.</p>
+      </div>
+      <div class="card">
+        <h3>Made By Pros :)</h3>
+        <p>Just trust okay :)</p>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        &copy; 2025 Tree Server Software for Minecraft. All rights reserved. Not sponsored or affiliated with Mojang.
-    </footer>
+  <section class="section">
+    <h2>Why McTree?</h2>
+    <p>McTree is engineered for simplicity and speed. No bloat, no unnecessary patches—just pure performance enhancements and full compatibility with the Purpur plugin ecosystem.</p>
+  </section>
+
+  <footer>
+    © McTree Labs — Better Than Paper! - Foundered by ItzSharkzYT - Not affiliated with MOJANG
+  </footer>
 </body>
 </html>
-
-
-
